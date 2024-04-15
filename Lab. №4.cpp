@@ -98,6 +98,11 @@ long double interpolationResult(long double x, long double h, long double result
     return value;
 }
 
+long double manual(long double x)
+{
+    return -(1 / (2 * (0.25 * powf(x, 2) + 1)) * (1 / powf(x, 2)));
+}
+
 int main()
 {
     SetConsoleCP(1251);
@@ -158,9 +163,15 @@ int main()
     Xs[2] = x10 - 0.5 * h;
     Xs[3] = x10;
 
-    printf("\n\n   x       f(x)     f`(x)     f`(x)н     Погрешность`   f``(x)     f``(x)н     Погрешность``\n");
+    //printf("\n\n   x       f(x)     f`(x)     f`(x)н     Погрешность`   f``(x)     f``(x)н     Погрешность``\n");
+    //for (i = 0; i < 4; i++)
+    //{
+    //    printf("%9.6lf %9.6lf %9.6lf %9.6lf %9.6lf      %9.6lf  %9.6lf   %9.6lf\n", Xs[i], atan(1.0 / 2.0 * Xs[i]), interpolationResult(Xs[i], 0.4, result, n), derivativeFirst(Xs[i], result), fabs(interpolationResult(Xs[i], 0.4, result, n) - derivativeFirst(Xs[i], result)), interpolationResult(Xs[i], 0.4, result, n), derivativeSecond(Xs[i], result), fabs(interpolationResult(Xs[i], 0.4, result, n) - derivativeSecond(Xs[i], result)));
+    //}
+
+	printf("\n\n   x       f(x)     f`(x)     f`(x)н     Погрешность`   f``(x)     f``(x)н     Погрешность``    По (arctan(1/2x))`\n");
     for (i = 0; i < 4; i++)
     {
-        printf("%9.6lf %9.6lf %9.6lf %9.6lf %9.6lf      %9.6lf  %9.6lf   %9.6lf\n", Xs[i], atan(1.0 / 2.0 * Xs[i]), interpolationResult(Xs[i], 0.4, result, n), derivativeFirst(Xs[i], result), fabs(interpolationResult(Xs[i], 0.4, result, n) - derivativeFirst(Xs[i], result)), interpolationResult(Xs[i], 0.4, result, n), derivativeSecond(Xs[i], result), fabs(interpolationResult(Xs[i], 0.4, result, n) - derivativeSecond(Xs[i], result)));
+        printf("%9.6lf %9.6lf %9.6lf %9.6lf %9.6lf      %9.6lf  %9.6lf   %9.6lf         %9.6lf\n", Xs[i], atan(1.0 / 2.0 * Xs[i]), interpolationResult(Xs[i], 0.4, result, n), derivativeFirst(Xs[i], result), fabs(interpolationResult(Xs[i], 0.4, result, n) - derivativeFirst(Xs[i], result)), interpolationResult(Xs[i], 0.4, result, n), derivativeSecond(Xs[i], result), fabs(interpolationResult(Xs[i], 0.4, result, n) - derivativeSecond(Xs[i], result)), manual(Xs[i]));
     }
 }
