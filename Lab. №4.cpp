@@ -50,17 +50,35 @@ long double interpolateSecond(int n, long double x, long double result[][12])
 
 long double derivativeFirst(long double x, long double result[][12])
 {
-    long double q = (x - result[0][0]) / 0.4;
-    long double value = 1 / 0.4 * (result[0][3] + (2 * q - 1) / 2 * result[0][4] + (3 * powf(q, 2) - 6 * q + 2) / 6 * result[0][5] + (4 * powf(q, 3) - 18 * powf(q, 2) - 22 * q - 6) / 24 * result[0][6] * (5 * powf(q, 4) - 40 * powf(q, 3) + 105 * powf(q, 2) - 100 * q + 24)/ 120 * result[0][7]);
-
+    long double q = 0.0;
+    long double value = 0.0;
+    if (x <= 3.0)
+    {
+        q = (x - result[0][0]) / 0.4;
+        value = 1 / 0.4 * (result[0][3] + (2 * q - 1) / 2 * result[0][4] + (3 * powf(q, 2) - 6 * q + 2) / 6 * result[0][5] + (4 * powf(q, 3) - 18 * powf(q, 2) - 22 * q - 6) / 24 * result[0][6] * (5 * powf(q, 4) - 40 * powf(q, 3) + 105 * powf(q, 2) - 100 * q + 24) / 120 * result[0][7]);
+    }
+    else
+    {
+        q = (x - result[10][0]) / 0.4;
+        value = 1 / 0.4 * (result[9][2] + (2 * q - 1) / 2 * result[8][3] + (3 * powf(q, 2) - 6 * q + 2) / 6 * result[7][4] + (4 * powf(q, 3) - 18 * powf(q, 2) - 22 * q - 6) / 24 * result[6][5] * (5 * powf(q, 4) - 40 * powf(q, 3) + 105 * powf(q, 2) - 100 * q + 24) / 120 * result[5][6]);
+    }
     return value;
 }
 
 long double derivativeSecond(long double x, long double result[][12])
 {
-    long double q = (x - result[0][0]) / 0.4;
-    long double value = 1 / powf(0.4, 2) * (result[0][4] + (q - 1) * result[0][5] + (6 * powf(q, 2) - 18 * q + 11) / 12 * result[0][6] + (powf(q, 3) - 6 * powf(q, 2) + 10.5 * q - 5) / 6 * result[0][7]);
-
+    long double q = 0.0;
+    long double value = 0.0;
+    if (x <= 3.0)
+    {
+        q = (x - result[0][0]) / 0.4;
+        value = 1 / powf(0.4, 2) * (result[0][4] + (q - 1) * result[0][5] + (6 * powf(q, 2) - 18 * q + 11) / 12 * result[0][6] + (powf(q, 3) - 6 * powf(q, 2) + 10.5 * q - 5) / 6 * result[0][7]);
+    }
+    else
+    {
+        q = (x - result[10][0]) / 0.4;
+        value = 1 / powf(0.4, 2) * (result[8][3] + (q - 1) * result[7][4] + (6 * powf(q, 2) - 18 * q + 11) / 12 * result[6][5] + (powf(q, 3) - 6 * powf(q, 2) + 10.5 * q - 5) / 6 * result[5][6]);
+    }
     return value;
 }
 
